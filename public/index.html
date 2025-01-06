@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handlysell - Маркетплейс</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: transparent;
+        }
+        .logo {
+            height: 40px;
+            margin-left: 5px;
+            margin-top: 5px;
+            margin-right: 15px;
+        }
+        .search-bar {
+            flex-grow: 1;
+            height: 30px;
+            padding: 5px 45px;
+            border-radius: 15px;
+            border: 2px solid white;
+            background-color: transparent;
+            color: white;
+            outline: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+        .content {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .image-card {
+            width: 30%;
+        }
+        .image-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .vip-section {
+            padding: 20px;
+            background-color: #2e2e2e;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            margin: 20px;
+        }
+        .vip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .vip-card {
+            background-color: #3a3a3a;
+            border-radius: 10px;
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            overflow: hidden;
+        }
+        .vip-card-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        .icon {
+            margin-left: 15px;
+        }
+        .icon img {
+            width: 36px;
+            height: 36px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html"><img src="header/Handlysell.png" alt="Handlysell Logo" class="logo"></a>
+        <input type="text" class="search-bar" placeholder="Поиск...">
+        <div class="icons">
+            <a href="add.html"><div class="icon"><img src="header/plus.png" alt="Plus Icon"></div></a>
+            <a href="chat.html"><div class="icon"><img src="header/chat.png" alt="Chat Icon"></div></a>
+            <a href="#" onclick="redirectToUserPage()"><div class="icon"><img src="header/user.png" alt="User Icon"></div></a>
+        </div>
+    </div>
+    <script>
+        function redirectToUserPage() {
+            fetch('/check-auth')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isAuthenticated) {
+                        window.location.href = '/user';
+                    } else {
+                        window.location.href = '/login';
+                    }
+                });
+        }
+    </script>
+    <div class="content">
+        <div class="image-card">
+            <a href="physical.html">
+                <img src="images/physical.jpg" alt="Физические товары">
+            </a>
+        </div>
+        <div class="image-card">
+            <a href="services.html">
+                <img src="images/services.jpg" alt="Услуги">
+            </a>
+        </div>
+        <div class="image-card">
+            <a href="electronic.html">
+                <img src="images/electronic.jpg" alt="Электронные товары">
+            </a>
+        </div>
+    </div>
+    <div class="vip-section">
+        <h2>VIP-объявления</h2>
+        <div class="vip-grid">
+            <div class="vip-card">Объявление 1</div>
+            <div class="vip-card">Объявление 2</div>
+            <div class="vip-card">Объявление 3</div>
+            <div class="vip-card">Объявление 4</div>
+            <div class="vip-card">Объявление 5</div>
+            <div class="vip-card">Объявление 6</div>
+        </div>
+    </div>
+</body>
+</html> 

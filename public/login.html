@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <script>
+        function checkAuthentication() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Пример отправки данных на сервер для проверки
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.isAuthenticated) {
+                    window.location.href = '/user';
+                } else {
+                    alert('Неверное имя пользователя или пароль.');
+                }
+            });
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #2e2e2e;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .login-container h1 {
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .login-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-container button:hover {
+            background-color: #4a4a4a;
+        }
+        .terms {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #d3d3d3; /* светло-серый цвет для текста */
+        }
+        .terms a {
+            color: #1e90ff; /* более светлый синий цвет для ссылок */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .terms a:hover {
+            color: #4682b4; /* более светлый синий при наведении */
+        }
+        .auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .auth-button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: #1a1a1a;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .auth-button-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 200px;
+            margin-left: 20px; /* отступ слева */
+        }
+        .auth-button img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            margin-right: 10px;
+        }
+        .auth-button:hover {
+            background-color: #f0f0f0;
+        }
+        .send-code-button {
+            color: #1e90ff; /* синий цвет как у гиперссылок */
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            text-align: center;
+        }
+        .send-code-button:hover {
+            color: #4682b4; /* более светлый синий при наведении */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Вход</h1>
+        <div class="auth-buttons">
+            <button class="auth-button">
+                <div class="auth-button-content">
+                    <img src="images/google-logo.png" alt="Google Logo">
+                    Войти через Google
+                </div>
+            </button>
+            <button class="auth-button">
+                <div class="auth-button-content">
+                    <img src="images/apple-logo.png" alt="Apple Logo">
+                    Войти через Apple
+                </div>
+            </button>
+        </div>
+        <input type="text" placeholder="Электронный адрес" id="email">
+        <button class="send-code-button" onclick="sendCode()">Отправить код</button>
+        <div class="terms">
+            Продолжая регистрацию или вход, вы принимаете 
+            <br>
+            условия 
+            <a href="user_agreement.html">Пользовательского соглашения</a> и 
+            <a href="privacy_policy.html">Политики 
+            конфиденциальности</a>.
+        </div>
+    </div>
+    <script>
+        function sendCode() {
+            const email = document.getElementById('email').value;
+            alert(`Код отправлен на ${email}`);
+        }
+    </script>
+</body>
+</html> 
