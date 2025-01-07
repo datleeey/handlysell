@@ -9,7 +9,6 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Пример отправки данных на сервер для проверки
             fetch('/login', {
                 method: 'POST',
                 headers: {
@@ -94,8 +93,8 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: white;
-            color: #1a1a1a;
+            background-color: #dcdcdc !important;
+            color: black !important;
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
@@ -121,10 +120,10 @@
             margin-right: 10px;
         }
         .auth-button:hover {
-            background-color: #f0f0f0;
+            background-color: #e0e0e0 !important; 
         }
         .send-code-button {
-            color: #1e90ff; /* синий цвет как у гиперссылок */
+            color: #1e90ff; 
             background: none;
             border: none;
             font-size: 16px;
@@ -137,7 +136,7 @@
             text-align: center;
         }
         .send-code-button:hover {
-            color: #4682b4; /* более светлый синий при наведении */
+            color: #4682b4; 
         }
     </style>
 </head>
@@ -145,7 +144,7 @@
     <div class="login-container">
         <h1>Вход</h1>
         <div class="auth-buttons">
-            <button class="auth-button">
+            <button class="auth-button" onclick="redirectToGoogleAuth()">
                 <div class="auth-button-content">
                     <img src="images/google-logo.png" alt="Google Logo">
                     Войти через Google
@@ -173,6 +172,9 @@
         function sendCode() {
             const email = document.getElementById('email').value;
             alert(`Код отправлен на ${email}`);
+        }
+        function redirectToGoogleAuth() {
+            window.location.href = '/google-auth';
         }
     </script>
 </body>
